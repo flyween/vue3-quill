@@ -3,6 +3,10 @@ Quill editor for vue3
 ## Usage
 
 ```javascript
+npm i vue3-quill
+```
+
+```javascript
 // global
 import { quillEditor } from 'vue3-quill'
 app.use(quillEditor)
