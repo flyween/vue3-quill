@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { quillEditor } from 'vue3-quill'
+import { quillEditor } from '../src'
 
 const app = createApp(App)
 

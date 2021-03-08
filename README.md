@@ -1,5 +1,12 @@
 # vue3-quill
-Quill editor for vue3
+Quill editor for vue3  
+
+<p lign="left">
+  <a href="https://npmcharts.com/compare/vue3-quill?minimal=true"><img src="https://img.shields.io/npm/dm/vue3-quill.svg?sanitize=true" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/vue3-quill"><img src="https://img.shields.io/npm/l/vue3-quill.svg?sanitize=true" alt="License"></a>
+</>
+
+
 ## Usage
 
 ```javascript
@@ -51,7 +58,11 @@ export default {
       editorOption: {
         placeholder: 'core',
         modules: {
-        }
+          toolbars: {
+            // custom toolbars options
+            // will override the default configuration
+          }
+        },
       },
       disabled: false
     })
@@ -80,11 +91,13 @@ export default {
 </script>
 ```
 
+
 # Packages
 Forked from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one
 
 [Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)
 
 # Welcome PR  
-Thanks to the open source.  
-For the convenience of all friends, please contribute your code :heart:
+Thanks to the open source. :heart:  
+
+[![HitCount](http://hits.dwyl.com/flyween/vue3-quill.svg)](http://hits.dwyl.com/flyween/vue3-quill)

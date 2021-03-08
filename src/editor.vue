@@ -99,12 +99,10 @@ export default {
 
     const mergeOptions = (def, custom) => {
       for (const key in custom) {
-        if (!def[key]) {
+        if (!def[key] || key !== 'modules') {
           def[key] = custom[key]
         } else {
-          if (key === 'modules') {
-            mergeOptions(def[key], custom[key])
-          }
+          mergeOptions(def[key], custom[key])
         }
       }
       return def
