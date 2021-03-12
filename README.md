@@ -15,9 +15,14 @@ npm i vue3-quill
 
 ```javascript
 // global
-import { quillEditor } from 'vue3-quill'
+import { quillEditor, Quill } from 'vue3-quill'
+import customQuillModule from 'customQuillModule'
+Quill.register('modules/customQuillModule', customQuillModule)
 app.use(quillEditor)
 
+```
+or
+```javascript
 //single file
 import { quillEditor, Quill } from 'vue3-quill'
 import customQuillModule from 'customQuillModule'
@@ -28,8 +33,6 @@ export default {
     quillEditor
   }
 }
-
-// event
 
 ```
 
@@ -61,8 +64,11 @@ export default {
           toolbars: {
             // custom toolbars options
             // will override the default configuration
-          }
+          },
+          // custom moudle here
+          otherMoudle: {}
         },
+        // more options
       },
       disabled: false
     })
@@ -91,6 +97,25 @@ export default {
 </script>
 ```
 
+# Default options
+```javascript
+toolbar: [
+  ['bold', 'italic', 'underline', 'strike'],
+  ['blockquote', 'code-block'],
+  [{ header: 1 }, { header: 2 }],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ script: 'sub' }, { script: 'super' }],
+  [{ indent: '-1' }, { indent: '+1' }],
+  [{ direction: 'rtl' }],
+  [{ size: ['small', false, 'large', 'huge'] }],
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ color: [] }, { background: [] }],
+  [{ font: [] }],
+  [{ align: [] }],
+  ['clean'],
+  ['link', 'image', 'video']
+]
+```
 
 # Packages
 Forked from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one
@@ -100,4 +125,4 @@ Forked from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor
 # Welcome PR  
 Thanks to the open source. :heart:  
 
-[![HitCount](http://hits.dwyl.com/flyween/vue3-quill.svg)](http://hits.dwyl.com/flyween/vue3-quill)
+[![HitCount](http://hits.dwyl.io/flyween/vue3-quill.svg)](http://hits.dwyl.io/flyween/vue3-quill)
