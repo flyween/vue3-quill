@@ -74,16 +74,16 @@ export default {
       disabled: false
     })
 
-    const onEditorBlur(quill) => {
+    const onEditorBlur = (quill) => {
       console.log('editor blur!', quill)
     }
-    const onEditorFocus(quill) => {
+    const onEditorFocus = (quill) => {
       console.log('editor focus!', quill)
     }
-    const onEditorReady(quill) => {
+    const onEditorReady = (quill) => {
       console.log('editor ready!', quill)
     }
-    const onEditorChange({ quill, html, text }) => {
+    const onEditorChange = ({ quill, html, text }) => {
       console.log('editor change!', quill, html, text)
       state._content = html
     }
