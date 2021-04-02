@@ -1,11 +1,11 @@
 # vue3-quill
 Quill editor for vue3  
 
-<p lign="left">
+<!-- <p lign="left">
   <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fflyween%2Fvue3-quill&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
   <a href="https://npmcharts.com/compare/vue3-quill?minimal=true"><img src="https://img.shields.io/npm/dm/vue3-quill.svg?sanitize=true" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/vue3-quill"><img src="https://img.shields.io/npm/l/vue3-quill.svg?sanitize=true" alt="License"></a>
-</>
+</> -->
 
 
 ## Usage
@@ -62,12 +62,12 @@ export default {
       editorOption: {
         placeholder: 'core',
         modules: {
-          toolbars: {
+          // toolbars: [
             // custom toolbars options
             // will override the default configuration
-          },
-          // custom moudle here
-          otherMoudle: {}
+          // ],
+          // other moudle options here
+          // otherMoudle: {}
         },
         // more options
       },
@@ -98,30 +98,71 @@ export default {
 </script>
 ```
 
-# Default options
+# Options  
+## Form Input Bindings: v-model
+The v-model directive can be used to create a two-way data binding. For example:  
+```vue
+<quill-editor v-model:value="state.content"></quill-editor>
+```
+## Event binding
+```vue
+<quill-editor
+    v-model:value="state.content"
+    @blur="onEditorBlur($event)"
+    @focus="onEditorFocus($event)"
+    @ready="onEditorReady($event)"
+    @change="onEditorChange($event)"
+  />
+```
+The following events are available:
+- blur
+- focus
+- ready
+- change
+
+## options prop
+- **options**  
+  Apply the default options by not passing this prop.  
+  The options passed in will override the default preset options.  
+  For example:  
+  ```js
+  modules: {
+    toolbar: []
+  }
+  ```
+  this option will generate an empty toolbar.  
+  Check the offical doc [Quill Documentation](https://quilljs.com/docs/configuration/) for all options.
+- **disabled**  
+  **Default:** `false`  
+  Set `true` to disabled the editor.
+
+# Default Quill options
 ```javascript
-toolbar: [
-  ['bold', 'italic', 'underline', 'strike'],
-  ['blockquote', 'code-block'],
-  [{ header: 1 }, { header: 2 }],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ script: 'sub' }, { script: 'super' }],
-  [{ indent: '-1' }, { indent: '+1' }],
-  [{ direction: 'rtl' }],
-  [{ size: ['small', false, 'large', 'huge'] }],
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ color: [] }, { background: [] }],
-  [{ font: [] }],
-  [{ align: [] }],
-  ['clean'],
-  ['link', 'image', 'video']
-]
+modules: {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [{ header: 1 }, { header: 2 }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ script: 'sub' }, { script: 'super' }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    [{ direction: 'rtl' }],
+    [{ size: ['small', false, 'large', 'huge'] }],
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    [{ color: [] }, { background: [] }],
+    [{ font: [] }],
+    [{ align: [] }],
+    ['clean'],
+    ['link', 'image', 'video']
+  ]
+}
 ```
 
 # Packages
-Forked from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one
+Borrowing from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one  
 
-[Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)
+[Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)  
+...
 
 # Welcome PR  
 Thanks to the open source. :heart:  

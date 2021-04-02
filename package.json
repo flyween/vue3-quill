@@ -38,6 +38,7 @@
     "type": "git",
     "url": "https://github.com/flyween/vue3-quill.git"
   },
+  "homepage": "https://flyween.github.com/vue3-quill",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/flyween/vue3-quill/issues"

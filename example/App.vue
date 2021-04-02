@@ -8,14 +8,17 @@
 
 <script>
 import { reactive } from 'vue'
-import { Quill } from '../src/index.js'
-console.log(Quill)
+import { Quill, quillEditor } from '../src/index.js'
+// console.log(Quill)
 
 import ImageUploader from "quill-image-uploader"
 Quill.register("modules/imageUploader", ImageUploader)
 
 export default {
   name: 'App',
+  components: {
+    quillEditor
+  },
   setup() {
     const state = reactive({
       content: '<p>2333</p>',
