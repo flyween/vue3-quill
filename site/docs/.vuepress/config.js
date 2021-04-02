@@ -2,11 +2,11 @@ module.exports = {
   lang: 'en-US',
   title: 'vue3-quill',
   description: 'Quill editor for vue3 project.',
-
+  base: '/vue3-quill/',
   themeConfig: {
     logo: 'https://vuejs.org/images/logo.png'
   },
-  plugins: ['@vuepress/back-to-top'],
+  // plugins: ['@vuepress/back-to-top'],
   // head: [
   //   [
   //     'script',
@@ -46,11 +46,5 @@ module.exports = {
   // firebase.analytics();
   // var perf = firebase.performance();`
   //   ]
-  // ],
-  configureWebpack: (config, isServer) => {
-    if (!isServer) {
-      // 修改客户端的 webpack 配置
-      config.output.publicPath = '/vue3-quill'
-    }
-  }
+  // ]
 }
