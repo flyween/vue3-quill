@@ -1,12 +1,11 @@
 export const data = {
   "key": "v-8daa1a0e",
   "path": "/",
-  "title": "Home",
+  "title": "Vue3-quill",
   "lang": "en-US",
   "frontmatter": {
     "home": true,
-    "title": "Home",
-    "heroImage": "/images/hero.png",
+    "title": "Vue3-quill",
     "footer": "MIT Licensed | Copyright © 2021-present flyween"
   },
   "excerpt": "",
@@ -19,27 +18,32 @@ export const data = {
     },
     {
       "level": 2,
-      "title": "Default Quill options",
-      "slug": "default-quill-options",
+      "title": "Form Input Bindings: v-model",
+      "slug": "form-input-bindings-v-model",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Event binding",
+      "slug": "event-binding",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "options prop",
+      "slug": "options-prop",
       "children": []
     }
   ],
   "filePathRelative": "README.md",
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1617289362000,
+    "contributors": [
+      {
+        "name": "Li",
+        "email": "443708569@qq.com",
+        "commits": 1
+      }
+    ]
   }
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

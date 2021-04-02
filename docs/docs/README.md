@@ -1,14 +1,13 @@
 ---
 home: true
-title: Home
-heroImage: /images/hero.png
-# # actions:
-# #   - text: Get Started
-# #     link: /guide/getting-started.html
-# #     type: primary
-# #   - text: Introduction
-# #     link: /guide/
-# #     type: secondary
+title: Vue3-quill
+# actions:
+#   - text: Get Started
+#     link: /guide/getting-started.html
+#     type: primary
+#   - text: Introduction
+#     link: /guide/
+#     type: secondary
 # features:
 # #   - title: Simplicity First
 # #     details: Minimal setup with markdown-centered project structure helps you focus on writing.
@@ -21,38 +20,52 @@ footer: MIT Licensed | Copyright © 2021-present flyween
 
 <!-- > With no typescript support   -->
 
-<quill-editor
+<!-- <quill-editor
     v-model:value="state.content"
     :options="state.editorOption"
     :disabled="state.disabled"
-  />
+  /> -->
+<component
+  v-if="state.dynamicComponent"
+  :is="state.dynamicComponent"
+  v-model:value="state.content"
+  :options="state.editorOption"
+  :disabled="state.disabled"
+></component>
+<p><b>Content:</b></p>
+<p>{{ state.content }}</p>
 
 <script>
-import { reactive } from 'vue'
-import { quillEditor } from 'vue3-quill'
+import { reactive, onMounted } from 'vue'
+// import { quillEditor } from 'vue3-quill'
 
 export default {
   components: {
-    quillEditor
+    // quillEditor
   },
-
   setup() {
     const state = reactive({
+      dynamicComponent: null,
       content: '<p>2333</p>',
       _content: '',
       editorOption: {
         placeholder: 'core',
         modules: {
-          toolbars: {
+          // toolbar: [
             // custom toolbars options
             // will override the default configuration
-          },
+          // ],
           // custom moudle here
-          otherMoudle: {}
         }
         // more options
       },
       disabled: false
+    })
+
+    onMounted(() => {
+      import('vue3-quill').then(module => {
+        state.dynamicComponent = module.default.quillEditor
+      })
     })
 
     return {
@@ -62,6 +75,7 @@ export default {
 }
 </script>
 
+---
 
 ## Get started
 
@@ -100,6 +114,7 @@ export default {
 
 ```vue
 <template>
+<component v-if="dynamicComponent" :is="dynamicComponent"></component>
   <quill-editor
     v-model:value="state.content"
     :options="state.editorOption"
@@ -122,17 +137,17 @@ export default {
   },
   setup() {
     const state = reactive({
+      dynamicComponent: null,
       content: '<p>2333</p>',
       _content: '',
       editorOption: {
         placeholder: 'core',
         modules: {
-          toolbars: {
+          toolbar: [
             // custom toolbars options
             // will override the default configuration
-          },
-          // custom moudle here
-          otherMoudle: {}
+          ],
+          // other moudle options here
         }
         // more options
       },
@@ -163,25 +178,68 @@ export default {
 </script>
 ```
 
-## Default Quill options
+# Options  
+## Form Input Bindings: v-model
+The v-model directive can be used to create a two-way data binding. For example:  
+```vue
+<quill-editor v-model:value="state.content"></quill-editor>
+```
+## Event binding
+```vue
+<quill-editor
+    v-model:value="state.content"
+    @blur="onEditorBlur($event)"
+    @focus="onEditorFocus($event)"
+    @ready="onEditorReady($event)"
+    @change="onEditorChange($event)"
+  />
+```
+The following events are available:
+- blur
+- focus
+- ready
+- change
 
+## options prop
+- **options**  
+  Apply the default options by not passing this prop.  
+  The options passed in will override the default preset options.  
+  For example:  
+  ```js
+  modules: {
+    toolbar: []
+  }
+  ```
+  this option will generate an empty toolbar.  
+  Check the offical doc [Quill Documentation](https://quilljs.com/docs/configuration/) for all options.
+- **disabled**  
+  **Default:** `false`  
+  Set `true` to disabled the editor.
+
+# Default Quill options
 ```javascript
 modules: {
-    toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
-        [{ header: 1 }, { header: 2 }],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        [{ script: 'sub' }, { script: 'super' }],
-        [{ indent: '-1' }, { indent: '+1' }],
-        [{ direction: 'rtl' }],
-        [{ size: ['small', false, 'large', 'huge'] }],
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        [{ color: [] }, { background: [] }],
-        [{ font: [] }],
-        [{ align: [] }],
-        ['clean'],
-        ['link', 'image', 'video']
-    ]
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [{ header: 1 }, { header: 2 }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ script: 'sub' }, { script: 'super' }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    [{ direction: 'rtl' }],
+    [{ size: ['small', false, 'large', 'huge'] }],
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    [{ color: [] }, { background: [] }],
+    [{ font: [] }],
+    [{ align: [] }],
+    ['clean'],
+    ['link', 'image', 'video']
+  ]
 }
 ```
+
+# Packages
+Borrowing from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one  
+
+[Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)  
+...
