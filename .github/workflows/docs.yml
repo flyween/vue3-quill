@@ -47,8 +47,10 @@ jobs:
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.vue3_quill_doc }}
         with:
-          token: ${{ secrets.vue3_quill_doc }}
           # deploy to gh-pages branch
           target_branch: gh-pages
           # deploy the default output dir of VuePress
