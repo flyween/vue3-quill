@@ -48,6 +48,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
         with:
+          token: ${{ secrets.vue3_quill_doc }}
           # deploy to gh-pages branch
           target_branch: gh-pages
           # deploy the default output dir of VuePress
