@@ -36,7 +36,7 @@ jobs:
 
       # install dependencies if the cache did not hit
       - name: Install dependencies
-        if: cd site && steps.yarn-cache.outputs.cache-hit != 'true'
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: cd site && yarn --frozen-lockfile
 
       # run build script
