@@ -6,45 +6,34 @@ module.exports = {
   themeConfig: {
     logo: 'https://vuejs.org/images/logo.png'
   },
-  // plugins: ['@vuepress/back-to-top'],
-  // head: [
-  //   [
-  //     'script',
-  //     {
-  //       src: 'https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js',
-  //       defer: 'defer'
-  //     }
-  //   ],
-  //   [
-  //     'script',
-  //     {
-  //       src: 'https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js',
-  //       defer: 'defer'
-  //     }
-  //   ],
-  //   [
-  //     'script',
-  //     {
-  //       src: 'https://www.gstatic.com/firebasejs/8.3.2/firebase-performance.js',
-  //       defer: 'defer'
-  //     }
-  //   ],
-  //   [
-  //     'script',
-  //     { defer: 'defer' },
-  //     `var firebaseConfig = {
-  //   apiKey: "AIzaSyBEsGC3PTqELqdsInEDMFOcK6Czv3ez2_c",
-  //   authDomain: "vue3-quill.firebaseapp.com",
-  //   projectId: "vue3-quill",
-  //   storageBucket: "vue3-quill.appspot.com",
-  //   messagingSenderId: "1016236747430",
-  //   appId: "1:1016236747430:web:4fe6df9131b1777dbc2267",
-  //   measurementId: "G-E4LK2LLMGN"
-  // };
-  // // Initialize Firebase
-  // firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
-  // var perf = firebase.performance();`
-  //   ]
-  // ]
+  templateSSR: './public/index.html',
+  plugins: [
+     ['@vuepress/back-to-top'],
+    [
+      'vuepress-plugin-helper-live2d', {
+        // 是否开启控制台日志打印(default: false)
+        log: false,
+        live2d: {
+          // 是否启用(关闭请设置为false)(default: true)
+          enable: true,
+          // 模型名称(default: hibiki)>>>取值请参考：
+          // https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki/live2d%E6%A8%A1%E5%9E%8B%E5%8C%85%E5%B1%95%E7%A4%BA
+          model: 'hibiki',
+          display: {
+            position: "right", // 显示位置：left/right(default: 'right')
+            width: 135, // 模型的长度(default: 135)
+            height: 300, // 模型的高度(default: 300)
+            hOffset: 65, //  水平偏移(default: 65)
+            vOffset: 0, //  垂直偏移(default: 0)
+          },
+          mobile: {
+            show: false // 是否在移动设备上显示(default: false)
+          },
+          react: {
+            opacity: 0.8 // 模型透明度(default: 0.8)
+          }
+        }
+      }
+    ]
+  ]
 }
