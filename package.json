@@ -3,6 +3,9 @@
   "version": "0.2.5",
   "private": false,
   "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "unpkg": "lib/vue3-quill.umd.min.js",
+  "jsdelivr": "lib/vue3-quill.umd.min.js",
   "keywords": [
     "vue3",
     "quill",
