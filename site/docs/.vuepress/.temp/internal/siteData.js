@@ -1,5 +1,5 @@
 export const siteData = {
-  "base": "/",
+  "base": "/vue3-quill/",
   "lang": "en-US",
   "title": "vue3-quill",
   "description": "Quill editor for vue3 project.",

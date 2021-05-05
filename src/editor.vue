@@ -8,7 +8,7 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
 import Quill from 'quill'
-import { onMounted, ref, watch, onUnmounted } from 'vue'
+import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue'
 
 const defaultOptions = {
   theme: 'snow',
@@ -31,7 +31,7 @@ const defaultOptions = {
       ['link', 'image', 'video']
     ]
   },
-  placeholder: 'Insert text here ...',
+  placeholder: 'Insert content here ...',
   readOnly: false
 }
 export default {
@@ -148,6 +148,13 @@ export default {
         context.emit('ready', state.quill)
       }
     }
+
+    onBeforeUnmount(() => {
+      const editorToolbar = editor.value.previousSibling
+      if (editorToolbar && editorToolbar.className.indexOf('ql-toolbar') > -1) {
+        editorToolbar.parentNode.removeChild(editorToolbar)
+      }
+    })
 
     onMounted(() => {
       initialize()

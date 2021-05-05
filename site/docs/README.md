@@ -20,13 +20,12 @@ footer: MIT Licensed | Copyright © 2021-present flyween
 
 <!-- > With no typescript support   -->
 
-<!-- <quill-editor
-    v-model:value="state.content"
-    :options="state.editorOption"
-    :disabled="state.disabled"
-  /> -->
+<div class="tab-button-wrap">
+  <button :class="{ on: state.curTheme === 'snow' }" @click="switchTheme('snow')">Theme snow</button>
+  <button :class="{ on: state.curTheme === 'bubble' }" @click="switchTheme('bubble')">Theme bubble</button>
+</div>
 <component
-  v-if="state.dynamicComponent"
+  v-if="state.dynamicComponent && state.showEditor"
   :is="state.dynamicComponent"
   v-model:value="state.content"
   :options="state.editorOption"
@@ -45,6 +44,8 @@ export default {
   },
   setup() {
     const state = reactive({
+      curTheme: 'snow',
+      showEditor: true,
       dynamicComponent: null,
       content: '<p>2333</p>',
       _content: '',
@@ -62,6 +63,19 @@ export default {
       disabled: false
     })
 
+    const reinitEditor = () => {
+      state.showEditor = false
+      setTimeout(() => {
+        state.showEditor = true
+      })
+    }
+
+    const switchTheme = (theme) => {
+      reinitEditor()
+      state.curTheme = theme
+      state.editorOption.theme = theme
+    }
+
     onMounted(() => {
       import('vue3-quill').then(module => {
         state.dynamicComponent = module.default.quillEditor
@@ -69,11 +83,34 @@ export default {
     })
 
     return {
-      state
+      state,
+      switchTheme
     }
   }
 }
 </script>
+
+<style>
+.tab-button-wrap {
+  display: flex;
+  justify-content:center;
+  padding: 15px 0;
+}
+.tab-button-wrap button{
+  padding: 15px 20px;
+  border: 1px solid #efefef;
+  background: #fff;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.tab-button-wrap button.on, .tab-button-wrap button:hover{
+  background: #efefef;
+}
+.tab-button-wrap button:active, .tab-button-wrap button:focus{
+  border: none;
+  outline: none;
+}
+</style>
 
 ---
 
@@ -243,3 +280,9 @@ Borrowing from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-edi
 
 [Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)  
 ...
+
+# Development
+```shell
+# root dir
+yarn serve
+```

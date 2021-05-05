@@ -1,5 +1,13 @@
 <template>
+  <center>
+    <h1>Dev playground</h1>
+  </center>
+  <div class="tab-button-wrap">
+    <button :class="{ on: state.curTheme === 'snow' }" @click="switchTheme('snow')">Theme snow</button>
+    <button :class="{ on: state.curTheme === 'bubble' }" @click="switchTheme('bubble')">Theme bubble</button>
+  </div>
   <quill-editor
+    v-if="state.showEditor"
     v-model:value="state.content"
     :options="state.editorOption"
     :disabled="state.disabled"
@@ -8,7 +16,7 @@
 
 <script>
 import { reactive } from 'vue'
-import { Quill, quillEditor } from '../src/index.js'
+import { Quill, quillEditor } from '../src/index'
 // console.log(Quill)
 
 import ImageUploader from "quill-image-uploader"
@@ -21,6 +29,8 @@ export default {
   },
   setup() {
     const state = reactive({
+      curTheme: 'snow',
+      showEditor: true,
       content: '<p>2333</p>',
       editorOption: {
         placeholder: 'core',
@@ -59,11 +69,24 @@ export default {
       disabled: true
     })
 
+    const reinitEditor = () => {
+      state.showEditor = false
+      setTimeout(() => {
+        state.showEditor = true
+      })
+    }
+
+    const switchTheme = (theme) => {
+      reinitEditor()
+      state.curTheme = theme
+      state.editorOption.theme = theme
+    }
+
     setTimeout(() => {
       state.disabled = false
     }, 2000)
 
-    return { state }
+    return { state, switchTheme }
   }
 }
 </script>
@@ -76,5 +99,24 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.tab-button-wrap {
+  display: flex;
+  justify-content:center;
+  padding: 15px 0;
+}
+.tab-button-wrap button{
+  padding: 15px 20px;
+  border: 1px solid #efefef;
+  background: #fff;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.tab-button-wrap button.on, .tab-button-wrap button:hover{
+  background: #efefef;
+}
+.tab-button-wrap button:active, .tab-button-wrap button:focus{
+  border: none;
+  outline: none;
 }
 </style>
