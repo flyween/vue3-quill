@@ -83,8 +83,14 @@ export default {
     }
 
     setTimeout(() => {
-      state.disabled = false
+      state.content = '<p>1111</p>'
     }, 2000)
+    setTimeout(() => {
+      state.content = '<p>100000111</p>'
+    }, 4000)
+    setTimeout(() => {
+      state.disabled = false
+    }, 6000)
 
     return { state, switchTheme }
   }

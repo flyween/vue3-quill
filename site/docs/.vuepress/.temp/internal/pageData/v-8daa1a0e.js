@@ -37,8 +37,13 @@ export const data = {
   ],
   "filePathRelative": "README.md",
   "git": {
-    "updatedTime": 1617366388000,
+    "updatedTime": 1620213814000,
     "contributors": [
+      {
+        "name": "Li",
+        "email": "443708569@qq.com",
+        "commits": 1
+      },
       {
         "name": "Lili",
         "email": "443708569@qq.com",

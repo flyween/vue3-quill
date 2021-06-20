@@ -138,6 +138,9 @@ The following events are available:
 - **disabled**  
   **Default:** `false`  
   Set `true` to disabled the editor.
+  As the value of `readOnly` when initialized.
+  Value changing will call API [Quill Documentation](https://quilljs.com/docs/api/#enable) of quill after initialization.
+  
 
 # Default Quill options
 ```javascript

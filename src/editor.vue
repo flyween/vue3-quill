@@ -112,6 +112,7 @@ export default {
       if (editor.value) {
         // Options
         state.editorOption = mergeOptions(defaultOptions, props.options)
+        state.editorOption.readOnly = props.disabled ? true : false
         // Instance
         state.quill = new Quill(editor.value, state.editorOption)
         // console.log('intilized')
