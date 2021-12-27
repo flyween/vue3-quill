@@ -1,14 +1,14 @@
 <template>
-  <section ref="editor"></section>
+  <section ref="editor" v-if="viewState.asyncedCss"></section>
 </template>
 
 <script>
 import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 import Quill from 'quill'
-import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue'
+import { onMounted, ref, watch, onUnmounted, onBeforeUnmount, reactive } from 'vue'
 
 const defaultOptions = {
   theme: 'snow',
@@ -51,10 +51,37 @@ export default {
   },
   emits: ['ready', 'change', 'input', 'blur', 'focus', 'update:value'],
   setup(props, context) {
+    
     const state = {
       editorOption: {},
       quill: null
     }
+
+    const viewState = reactive({
+      asyncedCss: false,
+      mounted: false
+    })
+    
+    ;(async () => {
+      if (!props.options.defaultCss) {
+        await import('quill/dist/quill.snow.css')
+        viewState.asyncedCss = true
+      }
+    })()
+
+    watch(
+      () => [viewState.asyncedCss, viewState.mounted],
+      (nval, oval) => {
+        console.log(nval)
+        console.log(oval)
+        if (!oval[0] && nval[0] && nval[1]) {
+          console.log('intialize ads')
+          setTimeout(() => {
+            initialize()
+          })
+        }
+      }
+    )
 
     let _content = ''
 
@@ -110,6 +137,7 @@ export default {
 
     const initialize = () => {
       if (editor.value) {
+        console.log('initialize !!')
         // Options
         state.editorOption = mergeOptions(defaultOptions, props.options)
         state.editorOption.readOnly = props.disabled ? true : false
@@ -158,6 +186,7 @@ export default {
     })
 
     onMounted(() => {
+      viewState.mounted = true
       initialize()
     })
 
@@ -165,7 +194,7 @@ export default {
       state.quill = null
     })
 
-    return { editor }
+    return { editor, viewState }
   }
 }
 </script>
