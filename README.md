@@ -16,19 +16,51 @@ Quill editor for vue3
 ```javascript
 npm i vue3-quill
 ```
-Global Registration:
+### Global Registration:
+```javascript
+// global
+import { quillEditor } from 'vue3-quill'
+app.use(quillEditor)
+
+```
+### or Local Registration:
+```javascript
+// single file
+import { quillEditor } from 'vue3-quill'
+
+export default {
+  components: {
+    quillEditor
+  }
+}
+
+```
+### Module registration example: 
 ```javascript
 // global
 import { quillEditor, Quill } from 'vue3-quill'
+
+// Attention:
+// customQuillModule means 'custom module name of Quill',
+// not a package's name called 'customQuillModule'.
+// Such as:
+// import ImageUploader from "quill.imageUploader.js";
+// Quill.register("modules/imageUploader", ImageUploader);
+
 import customQuillModule from 'customQuillModule'
 Quill.register('modules/customQuillModule', customQuillModule)
 app.use(quillEditor)
 
 ```
-or Local Registration:
+### or in a single component
 ```javascript
-//single file
 import { quillEditor, Quill } from 'vue3-quill'
+// Attention:
+// customQuillModule means 'custom module name of Quill',
+// not a package's name called 'customQuillModule'.
+// Such as:
+// import ImageUploader from "quill.imageUploader.js";
+// Quill.register("modules/imageUploader", ImageUploader);
 import customQuillModule from 'customQuillModule'
 Quill.register('modules/customQuillModule', customQuillModule)
 
@@ -39,7 +71,7 @@ export default {
 }
 
 ```
-In .vue
+### In .vue
 ```vue
 <template>
   <quill-editor

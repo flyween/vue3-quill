@@ -122,20 +122,51 @@ npm i vue3-quill
 yarn add vue3-quill
 ```
 
-**Global Registration:**
-
+### Global Registration:
 ```javascript
+// global
+import { quillEditor } from 'vue3-quill'
+app.use(quillEditor)
+
+```
+### or Local Registration:
+```javascript
+// single file
+import { quillEditor } from 'vue3-quill'
+
+export default {
+  components: {
+    quillEditor
+  }
+}
+
+```
+### Module registration example: 
+```javascript
+// global
 import { quillEditor, Quill } from 'vue3-quill'
+
+// Attention:
+// customQuillModule means 'custom module name of Quill',
+// not a package's name called 'customQuillModule'.
+// Such as:
+// import ImageUploader from "quill.imageUploader.js";
+// Quill.register("modules/imageUploader", ImageUploader);
+
 import customQuillModule from 'customQuillModule'
 Quill.register('modules/customQuillModule', customQuillModule)
 app.use(quillEditor)
+
 ```
-
-**or Local Registration:**
-
-```vue
-<script>
+### or in a single component
+```javascript
 import { quillEditor, Quill } from 'vue3-quill'
+// Attention:
+// customQuillModule means 'custom module name of Quill',
+// not a package's name called 'customQuillModule'.
+// Such as:
+// import ImageUploader from "quill.imageUploader.js";
+// Quill.register("modules/imageUploader", ImageUploader);
 import customQuillModule from 'customQuillModule'
 Quill.register('modules/customQuillModule', customQuillModule)
 
@@ -144,14 +175,11 @@ export default {
     quillEditor
   }
 }
-</script>
+
 ```
-
-**Example:**
-
+### In .vue
 ```vue
 <template>
-<component v-if="dynamicComponent" :is="dynamicComponent"></component>
   <quill-editor
     v-model:value="state.content"
     :options="state.editorOption"
@@ -165,39 +193,35 @@ export default {
 
 <script>
 import { reactive } from 'vue'
-import { quillEditor } from 'vue3-quill'
 
 export default {
   name: 'App',
-  components: {
-    quillEditor
-  },
   setup() {
     const state = reactive({
-      dynamicComponent: null,
       content: '<p>2333</p>',
       _content: '',
       editorOption: {
         placeholder: 'core',
         modules: {
-          toolbar: [
+          // toolbars: [
             // custom toolbars options
             // will override the default configuration
-          ],
+          // ],
           // other moudle options here
-        }
+          // otherMoudle: {}
+        },
         // more options
       },
       disabled: false
     })
 
-    const onEditorBlur = quill => {
+    const onEditorBlur = (quill) => {
       console.log('editor blur!', quill)
     }
-    const onEditorFocus = quill => {
+    const onEditorFocus = (quill) => {
       console.log('editor focus!', quill)
     }
-    const onEditorReady = quill => {
+    const onEditorReady = (quill) => {
       console.log('editor ready!', quill)
     }
     const onEditorChange = ({ quill, html, text }) => {
