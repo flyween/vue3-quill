@@ -6,5 +6,6 @@ quillEditor.install = function(app) {
 }
 
 const VueQuillEditor = { Quill, quillEditor }
+
 export default VueQuillEditor
 export { Quill, quillEditor }
