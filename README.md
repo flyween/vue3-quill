@@ -197,7 +197,7 @@ modules: {
 ```
 
 # Packages
-Borrowing from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one  
+Borrowing from: [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)  Inspired by this one.  
 
 [Quill ImageHandler Module](https://www.npmjs.com/package/quill-image-uploader)  
 ...
