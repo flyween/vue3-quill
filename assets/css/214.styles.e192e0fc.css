@@ -1,0 +1,1 @@
+.tab-button-wrap{display:flex;justify-content:center;padding:15px 0}.tab-button-wrap button{padding:15px 20px;border:1px solid #efefef;background:#fff;-webkit-appearance:none;cursor:pointer}.tab-button-wrap button.on,.tab-button-wrap button:hover{background:#efefef}.tab-button-wrap button:active,.tab-button-wrap button:focus{border:0;outline:0}
